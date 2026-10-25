@@ -1,0 +1,53 @@
+Package: com.xiaotaozi.themeduo
+Name: ThemeDuo
+Version: 0.0.2-beta
+Architecture: iphoneos-arm64
+Installed-Size: 340
+Depends: firmware (>= 15.0), mobilesubstrate (>= 0.9.5000)
+Conflicts: local.awemex.ui.rebuild
+Replaces: local.awemex.ui.rebuild
+Section: Tweaks
+Maintainer: 小桃子
+Author: 小桃子
+Homepage: https://h7ang0.github.io/taozi/
+Description: Douyin external image themes, native settings entry and local account UID copy.
+Filename: debs/com.xiaotaozi.themeduo_0.0.2-beta_iphoneos-arm64.deb
+Size: 82290
+MD5sum: 40c94d19c18c916848e58ee509791fec
+SHA256: 3a024069f982f1071bf3d5b5d40a4a55b6c30f7e59ea06b11d588c1f51170491
+
+Package: com.xiaotaozi.themeduo.rootful
+Name: ThemeDuo 有根版
+Version: 0.0.2-beta
+Architecture: iphoneos-arm
+Installed-Size: 340
+Depends: firmware (>= 15.0), mobilesubstrate (>= 0.9.5000)
+Conflicts: local.awemex.ui.rebuild
+Replaces: local.awemex.ui.rebuild
+Section: Tweaks
+Maintainer: 小桃子
+Author: 小桃子
+Homepage: https://h7ang0.github.io/taozi/
+Description: Douyin external image themes, native settings entry and local account UID copy.
+Filename: debs/com.xiaotaozi.themeduo.rootful_0.0.2-beta_iphoneos-arm.deb
+Size: 82488
+MD5sum: bcd33260b4bbce3aeb0a04fc476c7be0
+SHA256: f84cffdfc60f59831b01338f7cc6919e0d6eab98e81fec58da4b35e4dfb487fa
+
+Package: com.xiaotaozi.themeduo.roothide
+Name: ThemeDuo 隐根版
+Version: 0.0.2-beta
+Architecture: iphoneos-arm64e
+Installed-Size: 340
+Depends: firmware (>= 15.0), mobilesubstrate (>= 0.9.5000)
+Conflicts: local.awemex.ui.rebuild
+Replaces: local.awemex.ui.rebuild
+Section: Tweaks
+Maintainer: 小桃子
+Author: 小桃子
+Homepage: https://h7ang0.github.io/taozi/
+Description: Douyin external image themes, native settings entry and local account UID copy.
+Filename: debs/com.xiaotaozi.themeduo.roothide_0.0.2-beta_iphoneos-arm64e.deb
+Size: 82180
+MD5sum: a3f059c224fc29c26fbd711eccb7859f
+SHA256: fb31670b0a9cc6217574ce12c7fa1b8b5540ef5cc0cb8a5166a0e31e5bae5cee
