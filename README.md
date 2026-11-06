@@ -43,8 +43,8 @@ ThemeDuo 0.0.2-beta 的面板里新增了「越狱源」分区，点击「添加
 
 ## 首页
 
-`index.html` 就是插件面板本身的可交互演示（与抖音内打开的面板同一套 UI 与样式）。
-页面顶部是越狱源区块：**头像 · 名称 · 一键添加到 Sileo · 插件列表 · 更新日志**。
+`index.html` 就是越狱源页：**头像 · 名称 · 一键添加到 Sileo · 插件列表 · 更新日志**。
+：**头像 · 名称 · 一键添加到 Sileo · 插件列表 · 更新日志**。
 「一键添加到 Sileo」是一条真实链接，指向
 `sileo://source/https://h7ang0.github.io/taozi/`，
 iPhone 上点一下就会打开 Sileo 并预填源地址。
@@ -56,7 +56,7 @@ iPhone 上点一下就会打开 Sileo 并预填源地址。
 ## 目录结构
 
 ```
-index.html          首页（插件面板演示，含「添加越狱源」一键跳转）
+index.html          首页（越狱源页：头像/名称/一键跳转/插件列表/更新日志）
 Packages            apt 索引，每个环境一段
 Packages.gz         索引压缩包
 Release             扁平源元数据
