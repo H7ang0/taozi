@@ -74,3 +74,15 @@ gzip -dc Packages.gz | diff - Packages
 ```
 
 ## ©小桃子 2026
+
+## 更新日志
+
+`changelog.json` 是更新日志的唯一数据源，首页的「更新日志」区块会直接读它。
+本地发布台（`release-console/index.html`）提交时会自动带上这个文件。
+
+## 本地发布台
+
+`release-console/index.html` 是本地运行的发布台：填 PAT → 选 .deb → 写更新日志 → 一次提交。
+它直接从 .deb 里读出包名 / 版本 / 架构 / 依赖，生成 `Packages`、`Packages.gz`、`Release`
+和 `changelog.json`，再通过 Git Data API 做成一个提交；旧版本 deb 会被自动移除。
+Bootstrap 与图标都在本地，离线也能打开。
