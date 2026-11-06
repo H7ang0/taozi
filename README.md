@@ -61,6 +61,7 @@ Packages            apt 索引，每个环境一段
 Packages.gz         索引压缩包
 Release             扁平源元数据
 debs/               三个 deb 包
+dylib/              手动安装用的 ThemeDuo.dylib（index.json 为清单）
 ```
 
 这是一个扁平源（flat repo），`Release` 与 `Packages` 都在仓库根目录，Sileo 添加
@@ -84,5 +85,6 @@ gzip -dc Packages.gz | diff - Packages
 
 `ni/release-console/index.html` 是放在本机、**不入仓库**的发布台：填 PAT → 选 .deb → 写更新日志 → 一次提交。
 它直接从 .deb 里读出包名 / 版本 / 架构 / 依赖，生成 `Packages`、`Packages.gz`、`Release`
-和 `changelog.json`，再通过 Git Data API 做成一个提交；旧版本 deb 会被自动移除。
+和 `changelog.json`；还能上传 `.dylib` 到 `dylib/`（同时写 `dylib/index.json` 供首页列出来）。
+最后通过 Git Data API 做成一个提交，旧版本 deb 与旧动态库会被自动移除。
 Bootstrap 与图标都在本地，离线也能打开。
