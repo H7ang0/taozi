@@ -4,8 +4,9 @@ Suite: stable
 Codename: stable
 Components: main
 Description: ThemeDuo 越狱源 - 抖音主题插件官方源
-Architectures: iphoneos-arm64
 Icon: https://avatars.githubusercontent.com/H7ang0
-Date: Fri, 20 Nov 2026 14:46:32 +0000
+Architectures: iphoneos-arm64
+Date: Fri, 20 Nov 2026 14:52:04 +0000
 SHA256:
- 207141845928c01b685b7496b8185354b6469f2e9c46e2d30210ecd995fc16d3 609 Packages
+ cb29d035603d28b51425702feee359fc0eeab2dbbfee90a78860d2eb0fa3ed75 558 Packages
+ 16374a2bbe615d389ec43efda745642af0abe7dec8119cdd0a94e5a5f444282b 399 Packages.gz
