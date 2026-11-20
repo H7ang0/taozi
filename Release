@@ -2,7 +2,10 @@ Origin: ThemeDuo
 Label: ThemeDuo
 Suite: stable
 Codename: stable
-Architectures: iphoneos-arm64
 Components: main
-Date: Fri, 06 Nov 2026 15:03:42 +0000
 Description: ThemeDuo 越狱源 - 抖音主题插件官方源
+Architectures: iphoneos-arm64
+Date: Fri, 20 Nov 2026 13:00:03 +0000
+SHA256:
+ 0c2d28541955b9809238f7666c5eaf4fed69adb66342bf47c2e8fc328e0b7a56 554 Packages
+ 6cd92e24e8f2866323fa457f06f29be28ee2cfd9a1bb2d97d1ec9de478f07509 395 Packages.gz

@@ -1,15 +1,15 @@
 Package: com.xiaotaozi.themeduo
 Name: ThemeDuo
-Version: 0.1.48
-Architecture: iphoneos-arm64
-Installed-Size: 2960
+Description: Douyin external image themes, native settings entry and local account UID copy.
+Maintainer: 小桃子
+Author: 小桃子
+Section: Tweaks
 Depends: firmware (>= 15.0), mobilesubstrate (>= 0.9.5000)
 Conflicts: local.awemex.ui.rebuild
 Replaces: local.awemex.ui.rebuild
-Section: Tweaks
-Maintainer: 小桃子
-Author: 小桃子
-Description: Douyin external image themes, native settings entry and local account UID copy.
-Filename: debs/com.xiaotaozi.themeduo_0.1.48_iphoneos-arm64.deb
-Size: 1379808
-SHA256: 9986945b3e394ad144904e7d8e1b44bf55a1b4aa8125f3252ede72c8c328c722
+Architecture: iphoneos-arm64
+Version: 0.2.03
+Installed-Size: 4328
+Filename: debs/com.xiaotaozi.themeduo_0.2.03_d015ad52265b_iphoneos-arm64.deb
+Size: 1798082
+SHA256: d015ad52265bafd5d616c4467ef410be067e59c39dca79072ad6c983d19213fc
