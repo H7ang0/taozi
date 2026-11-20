@@ -73,6 +73,12 @@ h1 span{color:var(--accent)}
 .copy-button{min-width:64px;min-height:44px;border:0;border-left:1px solid var(--line);background:transparent;color:var(--text);font-size:12px;transition:transform .18s ease-out,opacity .18s ease-out}
 .copy-button:hover{color:var(--accent)}
 .copy-button:active{opacity:.6}
+.qnq-block{margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.secondary-action{min-height:52px;width:100%;display:inline-flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;border:1px solid var(--accent);background:transparent;color:var(--accent);font-weight:650;font-size:14px;transition:transform .18s ease-out,opacity .18s ease-out}
+.secondary-action svg{width:18px;height:18px;flex:none}
+.secondary-action:hover{transform:translateY(-2px)}
+.secondary-action:active{transform:translateY(0);opacity:.82}
+.qnq-note{margin-top:12px;color:var(--text-muted);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:11px;line-height:1.8}
 .support-note{margin-top:24px;color:var(--text-muted);font-size:11px;line-height:1.8}
 .support-note strong{color:var(--text);font-weight:500}
 .content{min-width:0}
@@ -120,7 +126,7 @@ h2{font-size:18px;font-weight:600;line-height:1.4;letter-spacing:-.03em}
 @media(min-width:600px){
   .brand-meta{display:inline}
   .intro,.section{padding-left:32px;padding-right:32px}
-  .primary-action{width:auto;min-width:260px}
+  .primary-action,.secondary-action{width:auto;min-width:260px}
   .package-row{grid-template-columns:minmax(0,1fr) auto;align-items:center}
   .download-link{min-width:132px}
   .toast{left:50%;right:auto;transform:translate(-50%,12px);min-width:280px}
@@ -205,6 +211,17 @@ h2{font-size:18px;font-weight:600;line-height:1.4;letter-spacing:-.03em}
         <code class="source-url" id="source-url">https://h7ang0.github.io/taozi/</code>
         <button class="copy-button" id="copy-source" type="button" aria-label="复制源地址">复制</button>
       </div>
+      <div class="qnq-block">
+        <a class="secondary-action" id="qnq-link" href="nsk-sign://addsource?url=https://h7ang0.github.io/taozi/appstore">
+          <span>一键添加到全能签</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="source-copy">
+          <code class="source-url" id="qnq-source-url">https://h7ang0.github.io/taozi/appstore</code>
+          <button class="copy-button" id="copy-qnq" type="button" aria-label="复制全能签软件源地址">复制</button>
+        </div>
+        <p class="qnq-note">免越狱：用全能签签名抖音时注入 ThemeDuo 动态库即可。手动添加：全能签 → 资源 → 软件源 → 添加第三方软件源。</p>
+      </div>
       <p class="support-note"><strong>UNSIGNED / 未签名</strong><br>支持 ROOTLESS · ROOTFUL · ROOTHIDE</p>
     </div>
   </aside>
@@ -250,7 +267,7 @@ h2{font-size:18px;font-weight:600;line-height:1.4;letter-spacing:-.03em}
           <div class="package-main">
             <div class="package-title-line"><h3 class="package-title">ThemeDuo IPA</h3><span class="env-tag">iOS 26 · 27+</span></div>
             <code class="bundle-id">com.xiaotaozi.themeduo</code>
-            <div class="package-specs"><span>未签名 IPA</span><span>iOS 26 或更高</span></div>
+            <div class="package-specs"><span>未签名 IPA</span><span>iOS 26 或更高</span></p>
             <p class="package-note" id="ipa-note">IPA 文件尚未上传，上传后将在这里开放下载。</p>
           </div>
           <button class="download-link" id="ipa-download" type="button" disabled>
