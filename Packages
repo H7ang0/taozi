@@ -9,6 +9,7 @@ Conflicts: local.awemex.ui.rebuild
 Replaces: local.awemex.ui.rebuild
 Architecture: iphoneos-arm64
 Version: 0.2.03-2
+Icon: https://h7ang0.github.io/taozi/CydiaIcon.png
 Installed-Size: 4360
 Filename: debs/com.xiaotaozi.themeduo_0.2.03-2_96485e324457_iphoneos-arm64.deb
 Size: 1799718

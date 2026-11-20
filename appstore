@@ -1,0 +1,21 @@
+{
+  "name": "ThemeDuo",
+  "identifier": "抖音主题插件官方源",
+  "sourceURL": "https://h7ang0.github.io/taozi/appstore",
+  "sourceicon": "https://h7ang0.github.io/taozi/CydiaIcon.png",
+  "apps": [
+    {
+      "name": "ThemeDuo 主题插件",
+      "type": 5,
+      "version": "0.2.03-2",
+      "versionDate": "2026-11-20T20:00:00+08:00",
+      "versionDescription": "抖音主题动态库，免越狱使用。\n在全能签签名抖音 App 时注入本动态库，即可启用主题功能。\n支持 iOS 15 及以上系统。",
+      "lock": "0",
+      "downloadURL": "https://h7ang0.github.io/taozi/dylib/ThemeDuo.dylib",
+      "isLanZouCloud": "0",
+      "iconURL": "https://h7ang0.github.io/taozi/CydiaIcon.png",
+      "tintColor": "5A4A9E",
+      "size": "3393856"
+    }
+  ]
+}

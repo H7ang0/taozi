@@ -4,9 +4,8 @@ Suite: stable
 Codename: stable
 Components: main
 Description: ThemeDuo 越狱源 - 抖音主题插件官方源
-Icon: https://avatars.githubusercontent.com/H7ang0
+Icon: https://h7ang0.github.io/taozi/CydiaIcon.png
 Architectures: iphoneos-arm64
-Date: Fri, 20 Nov 2026 14:52:04 +0000
+Date: Fri, 20 Nov 2026 15:44:25 +0000
 SHA256:
- cb29d035603d28b51425702feee359fc0eeab2dbbfee90a78860d2eb0fa3ed75 558 Packages
- 16374a2bbe615d389ec43efda745642af0abe7dec8119cdd0a94e5a5f444282b 399 Packages.gz
+ 1bbb6b0354568e27037064bbb24d97412d40473f3e38a8f473ee4ac5cfd0a43a 609 Packages
