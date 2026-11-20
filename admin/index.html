@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111313">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='12' fill='%23E9E5F3'/%3E%3Cpath d='M18 14h6c7.18 0 12 4.25 12 11s-4.82 11-12 11h-6V14Zm5 5v12h1c4.3 0 6.8-2.15 6.8-6S28.3 19 24 19h-1Z' fill='%23ED8FA6'/%3E%3Cpath d='M10 9h8c8 0 13 4.5 13 12s-5 12-13 12h-8V9Zm5.5 5.5v13H18c4.8 0 7.5-2.3 7.5-6.5s-2.7-6.5-7.5-6.5h-2.5Z' fill='%235A4A9E'/%3E%3C/svg%3E">
+<title>ThemeDuo — 管理后台</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
+:root{
+  color-scheme:dark;
+  --p-ink:oklch(0.16 0.005 180);
+  --p-ink-raised:oklch(0.19 0.005 180);
+  --p-text:oklch(0.84 0.005 180);
+  --p-muted:oklch(0.65 0.008 180);
+  --p-line:oklch(0.25 0.005 180);
+  --p-aqua:oklch(0.88 0.14 178);
+  --p-danger:oklch(0.72 0.16 25);
+  --surface:var(--p-ink);
+  --surface-raised:var(--p-ink-raised);
+  --text:var(--p-text);
+  --text-muted:var(--p-muted);
+  --line:var(--p-line);
+  --accent:var(--p-aqua);
+  --danger:var(--p-danger);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{min-width:0;min-height:100dvh;background:var(--surface);color:var(--text);font-family:"Geist Mono","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",monospace;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font:inherit;color:inherit;cursor:pointer}
+button,a{-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.topbar{min-height:64px;padding:12px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:inline-flex;align-items:center;gap:12px;min-height:44px;color:var(--text)}
+.brand:hover{text-decoration:none}
+.brand-mark{width:32px;height:32px;flex:none}
+.brand-name{font-size:13px;font-weight:650;letter-spacing:.08em}
+.brand-tag{color:var(--accent);font-size:10px;letter-spacing:.12em;border:1px solid var(--line);padding:2px 8px}
+.auth-side{display:flex;align-items:center;gap:12px;min-height:44px;color:var(--text-muted);font-size:11px}
+.admin-main{max-width:960px;margin:0 auto;padding:36px 20px 64px}
+.view-title{font-size:22px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px}
+.view-desc{color:var(--text-muted);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:13px;line-height:1.8;max-width:64ch}
+.panel{margin-top:28px;padding:24px;border:1px solid var(--line);background:var(--surface-raised)}
+.field{margin-top:18px;display:grid;gap:8px}
+.field label{color:var(--text-muted);font-size:11px;letter-spacing:.06em}
+.field input,.field textarea,.field select{min-height:44px;padding:10px 12px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:inherit;font-size:13px;border-radius:0;width:100%}
+.field textarea{min-height:110px;resize:vertical;line-height:1.7}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent);outline:none}
+.field-row{display:grid;gap:16px}
+.btn{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 20px;border:1px solid var(--line);background:transparent;color:var(--text);font-size:13px;font-weight:550;letter-spacing:.03em;transition:transform .18s ease-out,opacity .18s ease-out,border-color .18s ease-out}
+.btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.btn:active{transform:translateY(0);opacity:.75}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn-primary:hover{color:var(--surface);opacity:.9}
+.btn-danger:hover{border-color:var(--danger);color:var(--danger)}
+.btn-sm{min-height:38px;padding:8px 14px;font-size:11px}
+.actions{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.note{margin-top:16px;color:var(--text-muted);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:12px;line-height:1.8}
+.note code{color:var(--accent);font-size:11px;overflow-wrap:anywhere}
+details.setup{margin-top:20px;border:1px solid var(--line);padding:14px 16px}
+details.setup summary{cursor:pointer;color:var(--text-muted);font-size:12px;min-height:32px;display:flex;align-items:center}
+details.setup ol{margin:12px 0 4px 20px;color:var(--text-muted);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:12px;line-height:2}
+details.setup code{color:var(--accent);font-size:11px;overflow-wrap:anywhere}
+.device-code{margin:24px 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.device-code code{font-size:30px;font-weight:650;letter-spacing:.18em;color:var(--accent);padding:14px 20px;border:1px dashed var(--accent)}
+.status-line{margin-top:16px;color:var(--text-muted);font-size:12px;min-height:20px}
+.tabs{margin-top:28px;display:flex;gap:0;border:1px solid var(--line);flex-wrap:wrap}
+.tab-btn{flex:1;min-width:120px;min-height:48px;border:0;border-right:1px solid var(--line);background:transparent;color:var(--text-muted);font-size:12px;font-weight:550;letter-spacing:.05em}
+.tab-btn:last-child{border-right:0}
+.tab-btn[aria-selected="true"]{background:var(--surface-raised);color:var(--accent)}
+.tab-btn:hover{color:var(--accent)}
+.tab-panel{margin-top:0;padding:24px;border:1px solid var(--line);border-top:0}
+.log-entry{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);min-width:0}
+.log-entry:last-child{border-bottom:0}
+.log-meta{min-width:0}
+.log-version{font-size:13px;font-weight:550}
+.log-sub{color:var(--text-muted);font-size:10px;margin-top:2px;overflow-wrap:anywhere}
+.subsection{margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}
+.subsection:first-of-type{margin-top:0;padding-top:0;border-top:0}
+.subsection h3{font-size:13px;font-weight:600;letter-spacing:.05em;color:var(--accent);margin-bottom:4px}
+.check-line{margin-top:18px;display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:12px;min-height:44px}
+.check-line input{width:18px;height:18px;accent-color:var(--accent);flex:none}
+.file-pick{display:block;margin-top:18px;border:1px dashed var(--line);padding:28px 24px;text-align:center;color:var(--text-muted);font-size:12px;cursor:pointer;transition:border-color .18s ease-out}
+.file-pick:hover{border-color:var(--accent);color:var(--accent)}
+.file-pick input{display:none}
+.file-info{margin-top:14px;color:var(--text-muted);font-size:11px;line-height:1.9;overflow-wrap:anywhere}
+.file-info strong{color:var(--text)}
+.op-log{margin-top:20px;border:1px solid var(--line);padding:14px 16px;color:var(--text-muted);font-size:11px;line-height:1.9;max-height:220px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+.toast{position:fixed;left:20px;right:20px;bottom:max(20px,env(safe-area-inset-bottom));z-index:10;padding:13px 16px;background:var(--accent);color:var(--surface);font-size:12px;font-weight:550;text-align:center;opacity:0;transform:translateY(12px);pointer-events:none;transition:transform .2s ease-out,opacity .2s ease-out}
+.toast.visible{opacity:1;transform:translateY(0)}
+@media(min-width:640px){
+  .topbar{padding:12px 32px}
+  .admin-main{padding:44px 32px 72px}
+  .field-row{grid-template-columns:1fr 1fr}
+  .toast{left:50%;right:auto;transform:translate(-50%,12px);min-width:300px}
+  .toast.visible{transform:translate(-50%,0)}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../" aria-label="返回 ThemeDuo 官方源首页">
+    <svg class="brand-mark" aria-hidden="true" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x=".5" y=".5" width="43" height="43" rx="13" fill="#E9E5F3"/>
+      <path d="M18 14H24C31.18 14 36 18.25 36 25S31.18 36 24 36H18V14ZM23 19V31H24C28.3 31 30.8 28.85 30.8 25S28.3 19 24 19H23Z" fill="#ED8FA6" fill-rule="evenodd"/>
+      <path d="M10 9H18C26 9 31 13.5 31 21S26 33 18 33H10V9ZM15.5 14.5V27.5H18C22.8 27.5 25.5 25.2 25.5 21S22.8 14.5 18 14.5H15.5Z" fill="#5A4A9E" fill-rule="evenodd"/>
+      <circle cx="34.5" cy="9.5" r="2" fill="#69DED0"/>
+    </svg>
+    <span class="brand-name">THEMEDUO</span>
+    <span class="brand-tag">ADMIN</span>
+  </a>
+  <div class="auth-side">
+    <span id="auth-status">未登录</span>
+    <button class="btn btn-sm" id="logout-btn" type="button" hidden>退出登录</button>
+  </div>
+</header>
+<main class="admin-main">
+
+  <section id="view-login">
+    <h1 class="view-title">管理后台登录</h1>
+    <p class="view-desc">使用 GitHub 设备码授权登录。授权后页面直接读写 H7ang0/taozi 仓库，令牌只保存在当前浏览器中，不会写入任何代码或服务器。只有对仓库有写权限的账号才能使用管理功能。</p>
+    <div class="panel">
+      <div class="field">
+        <label for="client-id">GITHUB OAUTH APP 的 CLIENT ID</label>
+        <input id="client-id" type="text" autocomplete="off" spellcheck="false" placeholder="Ov23li… 或 Iv1.…（保存在本浏览器，可反复使用）">
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" id="login-btn" type="button">使用 GitHub 登录</button>
+      </div>
+      <details class="setup">
+        <summary>首次使用：创建 OAuth App 并开启 Device Flow（一次性，约 2 分钟）</summary>
+        <ol>
+          <li>打开 <a href="https://github.com/settings/developers" target="_blank" rel="noopener">github.com/settings/developers</a> → OAuth Apps → <strong>New OAuth App</strong>。</li>
+          <li>Application name 任意（如 ThemeDuo Admin）；Homepage URL 填 <code>https://h7ang0.github.io/taozi/admin/</code>；Authorization callback URL 同样填该地址（设备码流程用不到，但表单必填）。</li>
+          <li>创建后进入该 App 页面，找到 <strong>Device Flow</strong> 并点 <strong>Enable</strong>。</li>
+          <li>复制页面上的 <strong>Client ID</strong> 粘贴到上面的输入框。Client ID 是公开标识，不是密钥，可以放心保存在浏览器里。</li>
+        </ol>
+      </details>
+      <p class="note">授权范围仅 <code>public_repo</code>（公开仓库读写），这是可调用的最小权限。退出登录即清除本机令牌。</p>
+    </div>
+  </section>
+
+  <section id="view-device" hidden>
+    <h1 class="view-title">完成 GitHub 授权</h1>
+    <p class="view-desc">复制下面的验证码，打开 GitHub 授权页面粘贴并确认。本页面会自动等待授权完成。</p>
+    <div class="panel">
+      <div class="device-code">
+        <code id="user-code">----</code>
+        <button class="btn btn-sm" id="copy-code" type="button">复制验证码</button>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary" id="verify-link" href="https://github.com/login/device" target="_blank" rel="noopener">打开 GitHub 授权页面</a>
+        <button class="btn" id="cancel-device" type="button">取消</button>
+      </div>
+      <p class="status-line" id="device-status">等待授权…</p>
+    </div>
+  </section>
+
+  <section id="view-denied" hidden>
+    <h1 class="view-title">没有写权限</h1>
+    <p class="view-desc">当前账号 <strong id="denied-user"></strong> 对 H7ang0/taozi 没有推送权限，无法使用管理后台。请退出后换仓库所有者账号重新授权。</p>
+    <div class="actions">
+      <button class="btn" id="denied-logout" type="button">退出登录</button>
+    </div>
+  </section>
+
+  <section id="view-admin" hidden>
+    <h1 class="view-title">仓库管理</h1>
+    <p class="view-desc">所有「保存并提交」都会以一次 Git 提交直接写入 main 分支，GitHub Pages 约 1～5 分钟后自动生效。首页显示的版本号和日期来自更新日志第一条，无需单独修改。</p>
+    <div class="tabs" role="tablist" aria-label="管理功能">
+      <button class="tab-btn" role="tab" data-tab="changelog" aria-selected="true" type="button">更新日志</button>
+      <button class="tab-btn" role="tab" data-tab="sources" aria-selected="false" type="button">软件源</button>
+      <button class="tab-btn" role="tab" data-tab="upload" aria-selected="false" type="button">上传文件</button>
+    </div>
+
+    <div class="tab-panel" id="tab-changelog" role="tabpanel">
+      <div id="changelog-list"><p class="note">正在读取 changelog.json…</p></div>
+      <div class="subsection">
+        <h3>新增版本条目</h3>
+        <div class="field-row">
+          <div class="field">
+            <label for="cl-version">版本号</label>
+            <input id="cl-version" type="text" placeholder="例如 0.2.04-1">
+          </div>
+          <div class="field">
+            <label for="cl-date">发布日期</label>
+            <input id="cl-date" type="date">
+          </div>
+        </div>
+        <div class="field">
+          <label for="cl-lines">更新内容（每行一条，可留空）</label>
+          <textarea id="cl-lines" placeholder="修正了…&#10;新增了…"></textarea>
+        </div>
+        <div class="actions">
+          <button class="btn" id="cl-add" type="button">添加到列表顶部</button>
+          <button class="btn btn-primary" id="cl-save" type="button">保存并提交</button>
+        </div>
+        <p class="note">保存后首页「更新日志」、顶部版本号与日期会随第一条记录自动更新。</p>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-sources" role="tabpanel" hidden>
+      <div class="subsection">
+        <h3>全能签软件源（appstore）</h3>
+        <div class="field-row">
+          <div class="field">
+            <label for="qnq-name">源名称</label>
+            <input id="qnq-name" type="text">
+          </div>
+          <div class="field">
+            <label for="qnq-icon">源图标 URL</label>
+            <input id="qnq-icon" type="text" spellcheck="false">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="qnq-app-name">应用名称</label>
+            <input id="qnq-app-name" type="text">
+          </div>
+          <div class="field">
+            <label for="qnq-app-version">版本号</label>
+            <input id="qnq-app-version" type="text">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="qnq-app-date">版本日期（ISO8601）</label>
+            <input id="qnq-app-date" type="text" placeholder="2026-11-20T20:00:00+08:00">
+          </div>
+          <div class="field">
+            <label for="qnq-app-size">文件大小（字节，字符串）</label>
+            <input id="qnq-app-size" type="text" inputmode="numeric">
+          </div>
+        </div>
+        <div class="field">
+          <label for="qnq-app-url">下载地址</label>
+          <input id="qnq-app-url" type="text" spellcheck="false">
+        </div>
+        <div class="field">
+          <label for="qnq-app-desc">版本描述</label>
+          <textarea id="qnq-app-desc"></textarea>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3>LCSign 软件源（source.json）</h3>
+        <div class="field-row">
+          <div class="field">
+            <label for="lc-name">源名称</label>
+            <input id="lc-name" type="text">
+          </div>
+          <div class="field">
+            <label for="lc-subtitle">副标题</label>
+            <input id="lc-subtitle" type="text">
+          </div>
+        </div>
+        <div class="field">
+          <label for="lc-desc">源描述</label>
+          <textarea id="lc-desc"></textarea>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="lc-app-name">应用名称</label>
+            <input id="lc-app-name" type="text">
+          </div>
+          <div class="field">
+            <label for="lc-version">版本号</label>
+            <input id="lc-version" type="text">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="lc-date">版本日期</label>
+            <input id="lc-date" type="date">
+          </div>
+          <div class="field">
+            <label for="lc-size">文件大小（字节，数字）</label>
+            <input id="lc-size" type="text" inputmode="numeric">
+          </div>
+        </div>
+        <div class="field">
+          <label for="lc-url">下载地址</label>
+          <input id="lc-url" type="text" spellcheck="false">
+        </div>
+        <div class="field">
+          <label for="lc-version-desc">版本描述</label>
+          <textarea id="lc-version-desc"></textarea>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" id="src-save" type="button">保存并提交</button>
+          <button class="btn" id="src-reload" type="button">重新读取</button>
+        </div>
+        <p class="note">只修改以上字段，源文件里的其余内容原样保留。两个源在一次提交中同时写入。</p>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-upload" role="tabpanel" hidden>
+      <label class="file-pick" for="up-file">
+        <input id="up-file" type="file" accept=".deb,.dylib,.ipa">
+        <span id="up-pick-text">点击选择 .deb / .dylib / .ipa 文件</span>
+      </label>
+      <p class="file-info" id="up-info" hidden></p>
+      <div class="field">
+        <label for="up-dir">上传到目录</label>
+        <select id="up-dir">
+          <option value="debs/">debs/（DEB 安装包）</option>
+          <option value="dylib/">dylib/（动态库）</option>
+          <option value="ipa/">ipa/（未签名 IPA）</option>
+        </select>
+      </div>
+      <div class="subsection" id="up-deb-box" hidden>
+        <h3>DEB 包信息（写入 Packages 与 Release）</h3>
+        <div class="field-row">
+          <div class="field">
+            <label for="up-pkg">Package 标识</label>
+            <input id="up-pkg" type="text" value="com.xiaotaozi.themeduo" spellcheck="false">
+          </div>
+          <div class="field">
+            <label for="up-name">显示名称</label>
+            <input id="up-name" type="text" value="ThemeDuo">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="up-version">版本号</label>
+            <input id="up-version" type="text" placeholder="例如 0.2.04-1">
+          </div>
+          <div class="field">
+            <label for="up-arch">架构</label>
+            <input id="up-arch" type="text" value="iphoneos-arm64" spellcheck="false">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="up-installed-size">Installed-Size（KB）</label>
+            <input id="up-installed-size" type="text" inputmode="numeric" value="4360">
+          </div>
+          <div class="field">
+            <label for="up-desc-deb">Description（英文一行）</label>
+            <input id="up-desc-deb" type="text" value="Douyin external image themes, native settings entry and local account UID copy.">
+          </div>
+        </div>
+        <label class="check-line"><input id="up-deb-sync" type="checkbox" checked> 上传后追加到 Packages 并重算 Release 哈希</label>
+      </div>
+      <label class="check-line" id="up-dylib-line" hidden><input id="up-dylib-sync" type="checkbox" checked> 同步更新 dylib/index.json（大小与 SHA256）</label>
+      <div class="subsection" id="up-ipa-box" hidden>
+        <h3>IPA 同步</h3>
+        <div class="field">
+          <label for="up-ipa-version">IPA 版本号（写入软件源条目）</label>
+          <input id="up-ipa-version" type="text" placeholder="例如 1.0">
+        </div>
+        <label class="check-line"><input id="up-ipa-sync" type="checkbox" checked> 同步：开启网站 IPA 下载按钮 + 写入全能签与 LCSign 源条目</label>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" id="up-save" type="button" disabled>上传并提交</button>
+      </div>
+      <div class="op-log" id="up-log" hidden></div>
+      <p class="note">DEB 建议文件名保持 <code>包名_版本_架构.deb</code> 格式。Sileo 端刷新源约需等 Pages 缓存更新（1～5 分钟）。</p>
+    </div>
+  </section>
+
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="./admin.js"></script>
+</body>
+</html>
