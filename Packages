@@ -8,8 +8,8 @@ Depends: firmware (>= 15.0), mobilesubstrate (>= 0.9.5000)
 Conflicts: local.awemex.ui.rebuild
 Replaces: local.awemex.ui.rebuild
 Architecture: iphoneos-arm64
-Version: 0.2.03
-Installed-Size: 4328
-Filename: debs/com.xiaotaozi.themeduo_0.2.03_d015ad52265b_iphoneos-arm64.deb
-Size: 1798082
-SHA256: d015ad52265bafd5d616c4467ef410be067e59c39dca79072ad6c983d19213fc
+Version: 0.2.03-1
+Installed-Size: 4360
+Filename: debs/com.xiaotaozi.themeduo_0.2.03-1_f25f15b3d6aa_iphoneos-arm64.deb
+Size: 1798148
+SHA256: f25f15b3d6aa9b799c6232ce63be7375b3e407cba506ca5fdead852e8b5cef34
