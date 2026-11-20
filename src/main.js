@@ -1,9 +1,11 @@
 const REPOSITORY_URL = 'https://h7ang0.github.io/taozi/';
 const QNQ_SOURCE_URL = 'https://h7ang0.github.io/taozi/appstore';
+const LCSIGN_SOURCE_URL = 'https://h7ang0.github.io/taozi/source.json';
 // 上传 IPA 后填入完整地址或站内路径，例如 'ipa/ThemeDuo.ipa'。
 const IPA_DOWNLOAD_URL = '';
 const copyButton = document.querySelector('#copy-source');
 const copyQnqButton = document.querySelector('#copy-qnq');
+const copyLcsignButton = document.querySelector('#copy-lcsign');
 const toast = document.querySelector('#toast');
 const systemOverride = document.querySelector('#system-override');
 let toastTimer;
@@ -157,6 +159,21 @@ copyQnqButton.addEventListener('click', async () => {
 
 document.querySelector('#qnq-link').addEventListener('click', () => {
   showToast('正在打开全能签…');
+});
+
+copyLcsignButton.addEventListener('click', async () => {
+  try {
+    await copyText(LCSIGN_SOURCE_URL);
+    copyLcsignButton.textContent = '已复制';
+    showToast('LCSign 软件源地址已复制');
+    window.setTimeout(() => { copyLcsignButton.textContent = '复制'; }, 1800);
+  } catch {
+    showToast('复制失败，请长按源地址手动复制');
+  }
+});
+
+document.querySelector('#lcsign-link').addEventListener('click', () => {
+  showToast('正在打开 LCSign…');
 });
 
 function displayDate(date) {

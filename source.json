@@ -1,0 +1,31 @@
+{
+  "name": "ThemeDuo",
+  "subtitle": "抖音主题插件官方源",
+  "description": "ThemeDuo 抖音主题插件官方软件源。用 LCSign 签名抖音 App 时注入 ThemeDuo 动态库，即可启用主题功能。",
+  "iconURL": "https://h7ang0.github.io/taozi/CydiaIcon.png",
+  "website": "https://h7ang0.github.io/taozi/",
+  "tintColor": "#5A4A9E",
+  "featuredApps": [],
+  "apps": [
+    {
+      "name": "ThemeDuo 主题插件",
+      "bundleIdentifier": "com.xiaotaozi.themeduo",
+      "developerName": "ThemeDuo",
+      "subtitle": "抖音主题插件",
+      "localizedDescription": "抖音主题动态库，免越狱使用。\n在 LCSign 签名抖音 App 时注入本动态库，即可启用主题功能。\n支持 iOS 15 及以上系统。",
+      "category": "插件",
+      "versions": [
+        {
+          "version": "0.2.03-2",
+          "date": "2026-11-20",
+          "localizedDescription": "抖音主题动态库。用 LCSign 签名抖音 App 时注入本动态库，即可启用主题功能。",
+          "downloadURL": "https://h7ang0.github.io/taozi/dylib/ThemeDuo.dylib",
+          "size": 3393856,
+          "minOSVersion": "15.0"
+        }
+      ],
+      "iconURL": "https://h7ang0.github.io/taozi/CydiaIcon.png"
+    }
+  ],
+  "news": []
+}
