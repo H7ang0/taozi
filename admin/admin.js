@@ -12,12 +12,23 @@ let changelogData = null;
 
 const $ = (sel) => document.querySelector(sel);
 
-function showToast(message) {
+function showToast(message, duration = 2400) {
   window.clearTimeout(toastTimer);
   const toast = $('#toast');
   toast.textContent = message;
   toast.classList.add('visible');
-  toastTimer = window.setTimeout(() => toast.classList.remove('visible'), 2400);
+  toastTimer = window.setTimeout(() => toast.classList.remove('visible'), duration);
+}
+
+function setBusy(btn, busy, busyText = '提交中…') {
+  if (busy) {
+    btn.dataset.label = btn.textContent;
+    btn.textContent = busyText;
+    btn.disabled = true;
+  } else {
+    btn.textContent = btn.dataset.label || btn.textContent;
+    btn.disabled = false;
+  }
 }
 
 async function copyText(text) {
@@ -78,15 +89,28 @@ function logLine(el, message) {
 }
 
 async function api(path, { method = 'GET', body } = {}) {
-  const response = await fetch(`${API}${path}`, {
-    method,
-    headers: {
-      Accept: 'application/vnd.github+json',
-      Authorization: `Bearer ${token}`,
-      ...(body ? { 'Content-Type': 'application/json' } : {})
-    },
-    body: body ? JSON.stringify(body) : undefined
-  });
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), 25000);
+  let response;
+  try {
+    response = await fetch(`${API}${path}`, {
+      method,
+      headers: {
+        Accept: 'application/vnd.github+json',
+        Authorization: `Bearer ${token}`,
+        ...(body ? { 'Content-Type': 'application/json' } : {})
+      },
+      body: body ? JSON.stringify(body) : undefined,
+      signal: controller.signal
+    });
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      throw new Error('请求超时：连接 api.github.com 超过 25 秒，请切换网络（Wi-Fi/蜂窝）或使用代理后重试');
+    }
+    throw new Error(`网络错误：${error.message}，无法连接 api.github.com，请检查网络`);
+  } finally {
+    window.clearTimeout(timer);
+  }
   if (!response.ok) {
     let detail = '';
     try {
@@ -188,9 +212,9 @@ async function boot() {
   } catch (error) {
     if (String(error.message).includes('401')) {
       logout();
-      showToast('令牌无效或已过期，请检查后重新粘贴');
+      showToast('令牌无效或已过期，请检查后重新粘贴', 5000);
     } else {
-      showToast(`初始化失败：${error.message}`);
+      showToast(`初始化失败：${error.message}`, 6000);
     }
   }
 }
@@ -268,17 +292,17 @@ async function saveChangelog() {
   changelogData.latest = changelogData.entries[0].version;
   changelogData.updated = changelogData.entries[0].date || today();
   const btn = $('#cl-save');
-  btn.disabled = true;
+  setBusy(btn, true);
   try {
     const sha = await commitFiles(
       [{ path: 'changelog.json', text: `${JSON.stringify(changelogData, null, 2)}\n` }],
       `后台更新日志：${changelogData.latest}`
     );
-    showToast(`已提交 ${sha.slice(0, 7)}，Pages 几分钟后生效`);
+    showToast(`已提交 ${sha.slice(0, 7)}，Pages 几分钟后生效`, 4000);
   } catch (error) {
-    showToast(`提交失败：${error.message}`);
+    showToast(`提交失败：${error.message}`, 6000);
   } finally {
-    btn.disabled = false;
+    setBusy(btn, false);
   }
 }
 
@@ -318,7 +342,7 @@ async function saveSources() {
     return;
   }
   const btn = $('#src-save');
-  btn.disabled = true;
+  setBusy(btn, true);
   try {
     qnq.name = $('#qnq-name').value.trim();
     qnq.sourceicon = $('#qnq-icon').value.trim();
@@ -347,11 +371,11 @@ async function saveSources() {
       ],
       '后台更新软件源条目'
     );
-    showToast(`已提交 ${sha.slice(0, 7)}，Pages 几分钟后生效`);
+    showToast(`已提交 ${sha.slice(0, 7)}，Pages 几分钟后生效`, 4000);
   } catch (error) {
-    showToast(`提交失败：${error.message}`);
+    showToast(`提交失败：${error.message}`, 6000);
   } finally {
-    btn.disabled = false;
+    setBusy(btn, false);
   }
 }
 
@@ -433,7 +457,7 @@ async function uploadAndCommit() {
   if (!pickedFile || !pickedBuffer) return;
   const btn = $('#up-save');
   const log = $('#up-log');
-  btn.disabled = true;
+  setBusy(btn, true, '上传中…');
   log.textContent = '';
   try {
     const dir = $('#up-dir').value;
@@ -525,12 +549,12 @@ async function uploadAndCommit() {
     logLine(log, '正在提交到 GitHub…');
     const sha = await commitFiles(files, `后台上传 ${filename}`);
     logLine(log, `完成：提交 ${sha.slice(0, 7)}，Pages 约 1～5 分钟后生效。`);
-    showToast('上传完成');
+    showToast('上传完成', 4000);
   } catch (error) {
     logLine(log, `失败：${error.message}`);
-    showToast(`上传失败：${error.message}`);
+    showToast(`上传失败：${error.message}`, 6000);
   } finally {
-    btn.disabled = false;
+    setBusy(btn, false);
   }
 }
 
