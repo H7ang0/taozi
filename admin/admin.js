@@ -4,11 +4,9 @@ const BRANCH = 'main';
 const API = 'https://api.github.com';
 const SITE = 'https://h7ang0.github.io/taozi/';
 const TOKEN_KEY = 'td_admin_token';
-const CLIENT_KEY = 'td_admin_client_id';
-const SCOPE = 'public_repo';
+const LEGACY_CLIENT_KEY = 'td_admin_client_id';
 
 let token = sessionStorage.getItem(TOKEN_KEY) || '';
-let pollTimer = 0;
 let toastTimer = 0;
 let changelogData = null;
 
@@ -68,7 +66,7 @@ function isoCn() {
 }
 
 function showView(name) {
-  ['login', 'device', 'denied', 'admin'].forEach(v => {
+  ['login', 'denied', 'admin'].forEach(v => {
     $(`#view-${v}`).hidden = v !== name;
   });
 }
@@ -138,81 +136,31 @@ async function commitFiles(files, message) {
   return commit.sha;
 }
 
-/* ---------- 登录与设备码流程 ---------- */
+/* ---------- 登录（细粒度令牌） ---------- */
 
-async function startLogin() {
-  const clientId = $('#client-id').value.trim();
-  if (!clientId) {
-    showToast('请先填写 OAuth App 的 Client ID');
-    $('#client-id').focus();
+async function tokenLogin() {
+  const input = $('#pat-input');
+  const value = input.value.trim();
+  if (!value) {
+    showToast('请先粘贴访问令牌');
+    input.focus();
     return;
   }
-  localStorage.setItem(CLIENT_KEY, clientId);
   const btn = $('#login-btn');
   btn.disabled = true;
   try {
-    const response = await fetch('https://github.com/login/device/code', {
-      method: 'POST',
-      headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({ client_id: clientId, scope: SCOPE })
-    });
-    const data = await response.json();
-    if (!response.ok || !data.device_code) {
-      throw new Error(data.error_description || data.error || `HTTP ${response.status}`);
-    }
-    $('#user-code').textContent = data.user_code;
-    $('#verify-link').href = data.verification_uri || 'https://github.com/login/device';
-    $('#device-status').textContent = '等待授权…';
-    showView('device');
-    pollForToken(clientId, data.device_code, Math.max(5, data.interval || 5));
-  } catch (error) {
-    showToast(`获取设备码失败：${error.message}（确认 Client ID 正确且已启用 Device Flow）`);
+    token = value;
+    sessionStorage.setItem(TOKEN_KEY, token);
+    await boot();
+    if (!$('#view-admin').hidden) input.value = '';
   } finally {
     btn.disabled = false;
   }
 }
 
-function pollForToken(clientId, deviceCode, interval) {
-  window.clearTimeout(pollTimer);
-  pollTimer = window.setTimeout(async () => {
-    try {
-      const response = await fetch('https://github.com/login/oauth/access_token', {
-        method: 'POST',
-        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          client_id: clientId,
-          device_code: deviceCode,
-          grant_type: 'urn:ietf:params:oauth:grant-type:device_code'
-        })
-      });
-      const data = await response.json();
-      if (data.access_token) {
-        token = data.access_token;
-        sessionStorage.setItem(TOKEN_KEY, token);
-        showToast('授权成功');
-        await boot();
-        return;
-      }
-      if (data.error === 'authorization_pending') {
-        pollForToken(clientId, deviceCode, interval);
-        return;
-      }
-      if (data.error === 'slow_down') {
-        pollForToken(clientId, deviceCode, interval + 5);
-        return;
-      }
-      $('#device-status').textContent = `授权失败：${data.error_description || data.error}，请重试。`;
-    } catch (error) {
-      $('#device-status').textContent = `网络异常：${error.message}，正在重试…`;
-      pollForToken(clientId, deviceCode, interval);
-    }
-  }, interval * 1000);
-}
-
 function logout() {
   token = '';
   sessionStorage.removeItem(TOKEN_KEY);
-  window.clearTimeout(pollTimer);
   $('#auth-status').textContent = '未登录';
   $('#logout-btn').hidden = true;
   showView('login');
@@ -240,7 +188,7 @@ async function boot() {
   } catch (error) {
     if (String(error.message).includes('401')) {
       logout();
-      showToast('登录已失效，请重新授权');
+      showToast('令牌无效或已过期，请检查后重新粘贴');
     } else {
       showToast(`初始化失败：${error.message}`);
     }
@@ -588,19 +536,10 @@ async function uploadAndCommit() {
 
 /* ---------- 事件绑定与启动 ---------- */
 
-$('#client-id').value = localStorage.getItem(CLIENT_KEY) || '';
-$('#login-btn').addEventListener('click', startLogin);
-$('#copy-code').addEventListener('click', async () => {
-  try {
-    await copyText($('#user-code').textContent);
-    showToast('验证码已复制');
-  } catch {
-    showToast('复制失败，请手动选择复制');
-  }
-});
-$('#cancel-device').addEventListener('click', () => {
-  window.clearTimeout(pollTimer);
-  showView('login');
+localStorage.removeItem(LEGACY_CLIENT_KEY);
+$('#login-btn').addEventListener('click', tokenLogin);
+$('#pat-input').addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') tokenLogin();
 });
 $('#logout-btn').addEventListener('click', logout);
 $('#denied-logout').addEventListener('click', logout);

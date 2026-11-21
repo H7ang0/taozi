@@ -125,41 +125,26 @@ details.setup code{color:var(--accent);font-size:11px;overflow-wrap:anywhere}
 
   <section id="view-login">
     <h1 class="view-title">管理后台登录</h1>
-    <p class="view-desc">使用 GitHub 设备码授权登录。授权后页面直接读写 H7ang0/taozi 仓库，令牌只保存在当前浏览器中，不会写入任何代码或服务器。只有对仓库有写权限的账号才能使用管理功能。</p>
+    <p class="view-desc">使用 GitHub 细粒度访问令牌（Fine-grained token）登录。令牌只保存在当前浏览器会话中，不会写入任何代码或服务器，页面只把它发给 api.github.com。请把令牌权限限制为仅 taozi 仓库，退出登录即清除本机令牌。</p>
     <div class="panel">
       <div class="field">
-        <label for="client-id">GITHUB OAUTH APP 的 CLIENT ID</label>
-        <input id="client-id" type="text" autocomplete="off" spellcheck="false" placeholder="Ov23li… 或 Iv1.…（保存在本浏览器，可反复使用）">
+        <label for="pat-input">FINE-GRAINED ACCESS TOKEN</label>
+        <input id="pat-input" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…">
       </div>
       <div class="actions">
-        <button class="btn btn-primary" id="login-btn" type="button">使用 GitHub 登录</button>
+        <button class="btn btn-primary" id="login-btn" type="button">验证并登录</button>
       </div>
       <details class="setup">
-        <summary>首次使用：创建 OAuth App 并开启 Device Flow（一次性，约 2 分钟）</summary>
+        <summary>首次使用：创建仅授权 taozi 仓库的令牌（一次性，约 2 分钟）</summary>
         <ol>
-          <li>打开 <a href="https://github.com/settings/developers" target="_blank" rel="noopener">github.com/settings/developers</a> → OAuth Apps → <strong>New OAuth App</strong>。</li>
-          <li>Application name 任意（如 ThemeDuo Admin）；Homepage URL 填 <code>https://h7ang0.github.io/taozi/admin/</code>；Authorization callback URL 同样填该地址（设备码流程用不到，但表单必填）。</li>
-          <li>创建后进入该 App 页面，找到 <strong>Device Flow</strong> 并点 <strong>Enable</strong>。</li>
-          <li>复制页面上的 <strong>Client ID</strong> 粘贴到上面的输入框。Client ID 是公开标识，不是密钥，可以放心保存在浏览器里。</li>
+          <li>打开 <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>（Fine-grained token 创建页）。</li>
+          <li>Token name 任意（如 themeduo-admin），Expiration 建议 90 天。</li>
+          <li><strong>Repository access</strong> 选 <strong>Only select repositories</strong>，只勾选 <code>H7ang0/taozi</code>。</li>
+          <li><strong>Permissions → Repository permissions</strong> 中把 <strong>Contents</strong> 设为 <code>Read and write</code>，其余全部保持 No access。</li>
+          <li>点 <strong>Generate token</strong>，复制 <code>github_pat_…</code> 粘贴到上面的输入框。</li>
         </ol>
       </details>
-      <p class="note">授权范围仅 <code>public_repo</code>（公开仓库读写），这是可调用的最小权限。退出登录即清除本机令牌。</p>
-    </div>
-  </section>
-
-  <section id="view-device" hidden>
-    <h1 class="view-title">完成 GitHub 授权</h1>
-    <p class="view-desc">复制下面的验证码，打开 GitHub 授权页面粘贴并确认。本页面会自动等待授权完成。</p>
-    <div class="panel">
-      <div class="device-code">
-        <code id="user-code">----</code>
-        <button class="btn btn-sm" id="copy-code" type="button">复制验证码</button>
-      </div>
-      <div class="actions">
-        <a class="btn btn-primary" id="verify-link" href="https://github.com/login/device" target="_blank" rel="noopener">打开 GitHub 授权页面</a>
-        <button class="btn" id="cancel-device" type="button">取消</button>
-      </div>
-      <p class="status-line" id="device-status">等待授权…</p>
+      <p class="note">为什么不用设备码授权：GitHub 的登录接口不允许浏览器跨域读取（无 CORS 头），纯网页设备码流程不可行。令牌方案不经过任何第三方服务器，权限精确到这一个仓库，随时可在 GitHub 设置里吊销。</p>
     </div>
   </section>
 
