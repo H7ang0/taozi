@@ -1,12 +1,12 @@
 {
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "dir": "dylib/",
   "files": [
     {
       "name": "ThemeDuo.dylib",
       "path": "dylib/ThemeDuo.dylib",
-      "size": 8627424,
-      "sha256": "2c5a4a5aea14f44bade0c3469b89fa0436e9c7e18f3fa57d62f4754e082f3c6c"
+      "size": 3545808,
+      "sha256": "d268d0ee3abdb74d2a6c07d67ea171c4ad9b1ee4c8f3e58e9ca35ceec636e92f"
     }
   ]
 }

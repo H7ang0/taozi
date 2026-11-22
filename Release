@@ -6,7 +6,7 @@ Components: main
 Description: ThemeDuo 越狱源 - 抖音主题插件官方源
 Icon: https://h7ang0.github.io/taozi/CydiaIcon.png
 Architectures: iphoneos-arm64
-Date: Sat, 21 Nov 2026 14:55:55 +0000
+Date: Sun, 22 Nov 2026 14:23:23 +0000
 SHA256:
- 188bb5ce0068752b0d45e9b3abfcc5425b533f0cd85640665923cacb61cf6fff 558 Packages
- 89f3cf268987c869af290cf13a015dff56ed0e3a7ef3591f2b49dfc4225e5e23 400 Packages.gz
+ d272ade68dc3df7f384b7ae803c071cf95db817ee5e45a0490b891943f985f6d 546 Packages
+ 222ebc4e639cb6e5906c9e2d6ec7478efedd122da54574fccc4e9bce161c1dc1 380 Packages.gz
