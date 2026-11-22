@@ -7,22 +7,6 @@ Section: Tweaks
 Depends: firmware (>= 15.0), mobilesubstrate (>= 0.9.5000)
 Conflicts: local.awemex.ui.rebuild
 Replaces: local.awemex.ui.rebuild
-Architecture: iphoneos-arm
-Version: 1.1.0
-Installed-Size: 4508
-Filename: debs/com.xiaotaozi.themeduo_1.1.0_9b5033879cca_iphoneos-arm.deb
-Size: 1839492
-SHA256: 9b5033879ccaba52f95e6ae5c75b941e8684f766cb5466420009acabba4ace41
-
-Package: com.xiaotaozi.themeduo
-Name: ThemeDuo
-Description: Douyin external image themes, native settings entry and local account UID copy.
-Maintainer: H7ang0
-Author: H7ang0
-Section: Tweaks
-Depends: firmware (>= 15.0), mobilesubstrate (>= 0.9.5000)
-Conflicts: local.awemex.ui.rebuild
-Replaces: local.awemex.ui.rebuild
 Architecture: iphoneos-arm64
 Version: 1.1.0
 Installed-Size: 4508
@@ -45,3 +29,19 @@ Installed-Size: 4508
 Filename: debs/com.xiaotaozi.themeduo_1.1.0_272369cb26d0_iphoneos-arm64e.deb
 Size: 1839390
 SHA256: 272369cb26d0dcd5e99f42ab942dbdeb9f59cac00292462347fb369461b86327
+
+Package: com.xiaotaozi.themeduo
+Name: ThemeDuo
+Description: Douyin external image themes, native settings entry and local account UID copy.
+Maintainer: H7ang0
+Author: H7ang0
+Section: Tweaks
+Depends: firmware (>= 15.0), mobilesubstrate (>= 0.9.5000)
+Conflicts: local.awemex.ui.rebuild
+Replaces: local.awemex.ui.rebuild
+Architecture: iphoneos-arm
+Version: 1.1.0
+Installed-Size: 4508
+Filename: debs/com.xiaotaozi.themeduo_1.1.0_7cef09c26693_iphoneos-arm.deb
+Size: 1839710
+SHA256: 7cef09c266931dd86801848a1ff3fac96fdd422a6a66ffe67db941525c272b05
