@@ -13,6 +13,12 @@
       "path": "dylib/ThemeDuo.dylib",
       "size": 3545808,
       "sha256": "a8ee8e4253d42ee8ff2c356cf66922abe0ab1a72d7bd6d5bb163c96116cffc4f"
+    },
+    {
+      "name": "ThemeDuo-roothide.dylib",
+      "path": "dylib/ThemeDuo-roothide.dylib",
+      "size": 3545808,
+      "sha256": "ca37ab5ca58067affb790d7475153ee890c4f7540f87e5b47702c6ea6587007a"
     }
   ]
 }
