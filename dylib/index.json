@@ -3,12 +3,6 @@
   "dir": "dylib/",
   "files": [
     {
-      "name": "ThemeDuo.dylib",
-      "path": "dylib/ThemeDuo.dylib",
-      "size": 3545808,
-      "sha256": "a8ee8e4253d42ee8ff2c356cf66922abe0ab1a72d7bd6d5bb163c96116cffc4f"
-    },
-    {
       "name": "ThemeDuo-roothide.dylib",
       "path": "dylib/ThemeDuo-roothide.dylib",
       "size": 3545808,
@@ -19,6 +13,12 @@
       "path": "dylib/ThemeDuo-rootful.dylib",
       "size": 3545808,
       "sha256": "cde84c59a0b3b0735eb4626dba841245eb5de058d73e3411bd3e512d817e3e60"
+    },
+    {
+      "name": "ThemeDuo.dylib",
+      "path": "dylib/ThemeDuo.dylib",
+      "size": 3545808,
+      "sha256": "42a19515b2866a85e33fc985b9b889a950f4c4a9b8b53dfeca4b6a79e37878fc"
     }
   ]
 }
