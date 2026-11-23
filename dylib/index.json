@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22",
+  "updated": "2026-11-23",
   "dir": "dylib/",
   "files": [
     {
@@ -9,16 +9,16 @@
       "sha256": "cde84c59a0b3b0735eb4626dba841245eb5de058d73e3411bd3e512d817e3e60"
     },
     {
-      "name": "ThemeDuo.dylib",
-      "path": "dylib/ThemeDuo.dylib",
-      "size": 3545808,
-      "sha256": "42a19515b2866a85e33fc985b9b889a950f4c4a9b8b53dfeca4b6a79e37878fc"
-    },
-    {
       "name": "ThemeDuo-roothide.dylib",
       "path": "dylib/ThemeDuo-roothide.dylib",
       "size": 3545808,
       "sha256": "3143151765692704a71e387120795eca7c772bd5977bb46cea9df144ea1888aa"
+    },
+    {
+      "name": "ThemeDuo.dylib",
+      "path": "dylib/ThemeDuo.dylib",
+      "size": 3545808,
+      "sha256": "9d88d9ffbb15f969b9cb38d32136c5ab4dbfc9c5981774fcb00e036c09c8965b"
     }
   ]
 }

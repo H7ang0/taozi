@@ -23,12 +23,12 @@ Section: Tweaks
 Depends: firmware (>= 15.0), mobilesubstrate (>= 0.9.5000)
 Conflicts: local.awemex.ui.rebuild
 Replaces: local.awemex.ui.rebuild
-Architecture: iphoneos-arm64
+Architecture: iphoneos-arm64e
 Version: 1.1.0
 Installed-Size: 4508
-Filename: debs/com.xiaotaozi.themeduo_1.1.0_d3236be16629_iphoneos-arm64.deb
-Size: 1839398
-SHA256: d3236be16629621990c4a93c867a283c22a0923a71714de401611efd516f14d5
+Filename: debs/com.xiaotaozi.themeduo_1.1.0_7d84289a773e_iphoneos-arm64e.deb
+Size: 1839444
+SHA256: 7d84289a773ebc650a81a51830febb94bd575169048dbf7755fb0d3221e605dc
 
 Package: com.xiaotaozi.themeduo
 Name: ThemeDuo
@@ -39,9 +39,9 @@ Section: Tweaks
 Depends: firmware (>= 15.0), mobilesubstrate (>= 0.9.5000)
 Conflicts: local.awemex.ui.rebuild
 Replaces: local.awemex.ui.rebuild
-Architecture: iphoneos-arm64e
+Architecture: iphoneos-arm64
 Version: 1.1.0
 Installed-Size: 4508
-Filename: debs/com.xiaotaozi.themeduo_1.1.0_7d84289a773e_iphoneos-arm64e.deb
-Size: 1839444
-SHA256: 7d84289a773ebc650a81a51830febb94bd575169048dbf7755fb0d3221e605dc
+Filename: debs/com.xiaotaozi.themeduo_1.1.0_8841cb0879c3_iphoneos-arm64.deb
+Size: 1839888
+SHA256: 8841cb0879c3dd23223429274881e2cbd7331ad7847c62e4cb673c946880f591
